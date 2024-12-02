@@ -12,7 +12,12 @@ func TestAddition_Calculate(t1 *testing.T) {
 		args args
 		want int
 	}{
-		// TODO: Add test cases.
+		{name: "1+2=3", args: args{a: 1, b: 2}, want: 3},
+		{name: "0+0=0", args: args{a: 0, b: 0}, want: 0},
+		{name: "-2+2=0", args: args{a: -2, b: 2}, want: 0},
+		{name: "2+-2=0", args: args{a: 2, b: -2}, want: 0},
+		{name: "-2+-2=-4", args: args{a: -2, b: -2}, want: -4},
+		{name: "1+0=1", args: args{a: 1, b: 0}, want: 1},
 	}
 	for _, tt := range tests {
 		t1.Run(tt.name, func(t1 *testing.T) {
@@ -34,7 +39,7 @@ func TestDivision_Calculate(t1 *testing.T) {
 		args args
 		want int
 	}{
-		// TODO: Add test cases.
+		{name: "6/2=3", args: args{a: 6, b: 2}, want: 3},
 	}
 	for _, tt := range tests {
 		t1.Run(tt.name, func(t1 *testing.T) {
@@ -56,7 +61,7 @@ func TestMultiplication_Calculate(t1 *testing.T) {
 		args args
 		want int
 	}{
-		// TODO: Add test cases.
+		{name: "2*2=4", args: args{a: 2, b: 2}, want: 4},
 	}
 	for _, tt := range tests {
 		t1.Run(tt.name, func(t1 *testing.T) {
@@ -78,7 +83,7 @@ func TestSubtraction_Calculate(t1 *testing.T) {
 		args args
 		want int
 	}{
-		// TODO: Add test cases.
+		{name: "2-2=0", args: args{a: 2, b: 2}, want: 0},
 	}
 	for _, tt := range tests {
 		t1.Run(tt.name, func(t1 *testing.T) {
