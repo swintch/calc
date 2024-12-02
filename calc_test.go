@@ -1,95 +1,84 @@
 package calc
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
-func TestAddition_Calculate(t1 *testing.T) {
-	type args struct {
-		a int
-		b int
-	}
+func TestAddition_Calculate(t *testing.T) {
 	tests := []struct {
-		name string
-		args args
-		want int
+		a, b, c int
 	}{
-		{name: "1+2=3", args: args{a: 1, b: 2}, want: 3},
-		{name: "0+0=0", args: args{a: 0, b: 0}, want: 0},
-		{name: "-2+2=0", args: args{a: -2, b: 2}, want: 0},
-		{name: "2+-2=0", args: args{a: 2, b: -2}, want: 0},
-		{name: "-2+-2=-4", args: args{a: -2, b: -2}, want: -4},
-		{name: "1+0=1", args: args{a: 1, b: 0}, want: 1},
+		{a: 1, b: 2, c: 3},
+		{a: 0, b: 0, c: 0},
+		{a: 0, b: 1, c: 1},
+		{a: 1, b: 0, c: 1},
+		{a: 1, b: 1, c: 2},
+		{a: 12345, b: 67890, c: 80235},
 	}
 	for _, tt := range tests {
-		t1.Run(tt.name, func(t1 *testing.T) {
-			t := Addition{}
-			if got := t.Calculate(tt.args.a, tt.args.b); got != tt.want {
-				t1.Errorf("Calculate() = %v, want %v", got, tt.want)
+		t.Run(fmt.Sprintf("%d+%d=%d", tt.a, tt.b, tt.c), func(t *testing.T) {
+			this := &Addition{}
+			if got := this.Calculate(tt.a, tt.b); got != tt.c {
+				t.Errorf("Calculate() = %v, want %v", got, tt.c)
 			}
 		})
 	}
 }
-
-func TestDivision_Calculate(t1 *testing.T) {
-	type args struct {
-		a int
-		b int
-	}
+func TestSubtraction_Calculate(t *testing.T) {
 	tests := []struct {
-		name string
-		args args
-		want int
+		a, b, c int
 	}{
-		{name: "6/2=3", args: args{a: 6, b: 2}, want: 3},
+		{a: 1, b: 2, c: -1},
+		{a: 0, b: 0, c: 0},
+		{a: 0, b: 1, c: -1},
+		{a: 1, b: 0, c: 1},
+		{a: 1, b: 1, c: 0},
+		{a: 12345, b: 67890, c: -55_545},
 	}
 	for _, tt := range tests {
-		t1.Run(tt.name, func(t1 *testing.T) {
-			t := Division{}
-			if got := t.Calculate(tt.args.a, tt.args.b); got != tt.want {
-				t1.Errorf("Calculate() = %v, want %v", got, tt.want)
+		t.Run(fmt.Sprintf("%d-%d=%d", tt.a, tt.b, tt.c), func(t *testing.T) {
+			this := &Subtraction{}
+			if got := this.Calculate(tt.a, tt.b); got != tt.c {
+				t.Errorf("Calculate() = %v, want %v", got, tt.c)
 			}
 		})
 	}
 }
-
-func TestMultiplication_Calculate(t1 *testing.T) {
-	type args struct {
-		a int
-		b int
-	}
+func TestMultiplication_Calculate(t *testing.T) {
 	tests := []struct {
-		name string
-		args args
-		want int
+		a, b, c int
 	}{
-		{name: "2*2=4", args: args{a: 2, b: 2}, want: 4},
+		{a: 1, b: 2, c: 2},
+		{a: 0, b: 0, c: 0},
+		{a: 0, b: 1, c: 0},
+		{a: 1, b: 0, c: 0},
+		{a: 1, b: 1, c: 1},
+		{a: 12345, b: 67890, c: 838_102_050},
 	}
 	for _, tt := range tests {
-		t1.Run(tt.name, func(t1 *testing.T) {
-			t := Multiplication{}
-			if got := t.Calculate(tt.args.a, tt.args.b); got != tt.want {
-				t1.Errorf("Calculate() = %v, want %v", got, tt.want)
+		t.Run(fmt.Sprintf("%d*%d=%d", tt.a, tt.b, tt.c), func(t *testing.T) {
+			this := &Multiplication{}
+			if got := this.Calculate(tt.a, tt.b); got != tt.c {
+				t.Errorf("Calculate() = %v, want %v", got, tt.c)
 			}
 		})
 	}
 }
-
-func TestSubtraction_Calculate(t1 *testing.T) {
-	type args struct {
-		a int
-		b int
-	}
+func TestDivision_Calculate(t *testing.T) {
 	tests := []struct {
-		name string
-		args args
-		want int
+		a, b, c int
 	}{
-		{name: "2-2=0", args: args{a: 2, b: 2}, want: 0},
+		{a: 4, b: 2, c: 2},
+		{a: 0, b: 1, c: 0},
+		{a: 10, b: 3, c: 3},
+		{a: 654, b: 321, c: 2},
 	}
 	for _, tt := range tests {
-		t1.Run(tt.name, func(t1 *testing.T) {
-			t := Subtraction{}
-			if got := t.Calculate(tt.args.a, tt.args.b); got != tt.want {
-				t1.Errorf("Calculate() = %v, want %v", got, tt.want)
+		t.Run(fmt.Sprintf("%d/%d=%d", tt.a, tt.b, tt.c), func(t *testing.T) {
+			this := &Division{}
+			if got := this.Calculate(tt.a, tt.b); got != tt.c {
+				t.Errorf("Calculate() = %v, want %v", got, tt.c)
 			}
 		})
 	}
